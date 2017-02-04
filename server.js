@@ -20,33 +20,41 @@ hbs.registerHelper('screamIt', (text) => {
 });
 
 //middlewares
-app.use((req, res, next) => {
-    var now = new Date().toString();
-    var log = `${now}: ${req.method} ${req.url}`;
-    console.log(log);
-    fs.appendFile('server.log', log +  '\n');
-    next();
-});
-app.use((req, res, next) => {
-    res.render('maintenance.hbs', {
-        maintenanceMessage:'Sorry, we are doing some maintenance',
-        pageTitle: 'Maintenance Mode'
-    });
-});
-app.use(express.static(__dirname + '/public'));
+// app.use((req, res, next) => {
+//     var now = new Date().toString();
+//     var log = `${now}: ${req.method} ${req.url}`;
+//     console.log(log);
+//     fs.appendFile('server.log', log +  '\n');
+//     next();
+// });
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs', {
+//         maintenanceMessage:'Sorry, we are doing some maintenance',
+//         pageTitle: 'Maintenance Mode'
+//     });
+// });
+// app.use(express.static(__dirname + '/public'));
 
 
 //app routes
 app.get('/', (req, res) => {
     res.render('home', {
-        welcomeMessage:'Hello, Thanks for visiting us',
+        welcomeMessage:'Hello, This is the home page',
         pageTitle: 'The Home Page Title'
     });
 });
 
 app.get('/about', (req, res) => {
     res.render('about.hbs', {
+        welcomeMessage:'Hello, This the about page',
         pageTitle: 'The About Page Title'
+    });
+});
+
+app.get('/project', (req, res) => {
+    res.render('project.hbs', {
+        welcomeMessage:'Hello, This the project page',
+        pageTitle: 'The Project Page Title'
     });
 });
 
